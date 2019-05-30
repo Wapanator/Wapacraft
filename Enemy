@@ -1,0 +1,10 @@
+public class Enemy extends Person {
+	
+	private String[] items;
+	
+	public Enemy(String name, String attack, String health) {
+		super(name, attack, health);
+	}
+	
+	
+}
