@@ -1,0 +1,65 @@
+
+public class Maze {
+
+	/*
+	 * Maze character representations
+	 * 
+	 * w = "wall"
+	 * o = "opening"
+	 * e = "enemy"
+	 * t = "treasure"
+	 * c = "character"
+	 * 
+	 */
+	
+	
+	
+	
+	
+	// Creation of instance variable "area" which will represent the maze char array
+	private char[][] area = new char[10][10];
+	
+	// Maze constructor creates 2d char array 10x10
+	public Maze() {
+		area = new char[10][10];
+	}
+	
+	// Function to return maze
+	public char[][] getMaze() {
+		return this.area;
+	}
+	
+
+	public char[][] generate() {
+		// Fills entire maze with "walls" char w
+		for (int i = 0; i < 10; i++) {
+			for (int u = 0; u < 10; u++) {
+				area[i][u] = 'w';
+			}
+		}
+		// Chooses random index inside the 2d array (not on the border) to start the opening
+		area[(int)(Math.random() * 8) + 1][(int)(Math.random() * 8) + 1] =  'o';
+		
+		// Returns fully generated maze
+		return area;
+	}
+	// Returns the content of a specific index in the maze
+	public char getMazeContent(int x, int y) {
+		return (area[x][y]);
+	}
+	
+	// Main function
+	public static void main(String[] args) {
+		Maze yeet = new Maze();
+		yeet.generate();
+		for (int i = 0; i < 10; i++) {
+			for (int u = 0; u < 10; u++) {
+				System.out.print(yeet.getMazeContent(i, u));
+			}
+			System.out.println();
+		}
+	}
+	
+	
+	
+}
