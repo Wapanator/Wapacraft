@@ -1,6 +1,15 @@
 public class Person {
-
-	String[] profile = new String[3];
+	
+	private String[] profile;
+	private String name;
+	private String attack;
+	private String health;
+	
+	public Person(String name, String attack, String health) {
+		profile[0] = name;
+		profile[1] = attack;
+		profile[2] = health;
+	}
 	
 	public void getInfo() {
 		System.out.println("Name: " + profile[0]);
