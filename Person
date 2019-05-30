@@ -1,0 +1,19 @@
+public class Person {
+	//public static void main() {
+	//Scanner text = new Scanner(System.in);
+	
+	//System.out.println("Hello player!\nWould you like to be a warrior, mage, or rogue?\nWarrior: 30% Attack increase\nMage: 50% run increase\nRogue: 50% item drop increase");
+	//System.out.println("\nPlease enter your choice:");
+	
+	//String playerChoice = text.next();
+	
+	//}
+	
+	String[] profile = new String[3];
+	
+	public void getInfo() {
+		System.out.println("Name: " + profile[0]);
+		System.out.println("Attack Stat: " + profile[1]);
+		System.out.println("Health: " + profile[2]);
+	}
+}
