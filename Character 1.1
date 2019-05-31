@@ -1,0 +1,98 @@
+package cruzmartinez;
+
+public class Character extends Person {
+
+	private int obtainItemProb;
+	private int runProb;
+	private int increaseAttackProb;
+	
+	public Character(String name, String attack, String health, int itemProb, int runningProb, int incAttackProb) {
+		super(name, attack, health);
+		obtainItemProb = itemProb;
+		runProb = runningProb;
+		increaseAttackProb = incAttackProb;		
+		// TODO Auto-generated constructor stub
+	}
+
+	//private int attackStat;
+	//private int healthStat;
+	
+
+	
+	/*
+	public Character(int obtainItemProb, int runProb, int increaseAttackProb)
+	{
+		super.person();
+		
+		
+	}
+	*/
+	/*
+	//---------ATTACK AND HEALTH GETTERS AND SETTERS-----------
+	
+	public int getAttackStat()
+	{
+		return attackStat;
+	}
+	
+	public void setAttackStat (int newAttackStat)
+	{
+		attackStat = newAttackStat;
+	}
+	
+	public int getHealthStat()
+	{
+		return healthStat;
+	}
+	
+	public void setHealthStat(int newHealthStat)
+	{
+		healthStat = newHealthStat;
+	}
+	//---------------------------------------------------------
+	*/
+	
+	//-----OBTAINITEM, RUN, AND INCREASEATTACK PROBABILITY GETTERS AND SETTERS-----
+	
+	public int getObtainItemProb()
+	{
+		return obtainItemProb;
+	}
+	
+	public void setObtainItemProb (int newObtainItemProb)
+	{
+		obtainItemProb = newObtainItemProb;
+	}
+	
+	public int getRunProb ()
+	{
+		return runProb;
+	}
+	
+	public void setRunProb (int newRunProb)
+	{
+		runProb = newRunProb;
+	}
+	
+	public int getIncreaseAttackProb()
+	{
+		return increaseAttackProb;
+	}
+	
+	public void setIncreaseAttackProb (int newIncreaseAttackProb)
+	{
+		increaseAttackProb = newIncreaseAttackProb;
+	}
+	//--------------------------------------------------------------------------------
+	
+	Character warrior = new Character("Warrior", //AHH DIDNT FINISH);
+	
+	
+	
+	switch (profile[0]) {
+	case "Warrior":
+		setRunProb(1);
+		
+	}
+		
+	
