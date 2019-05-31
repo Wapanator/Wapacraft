@@ -1,4 +1,3 @@
-
 public class Maze {
 
 	/*
@@ -13,8 +12,9 @@ public class Maze {
 	 */
 	
 	
-	
-	
+	//initializes variables to be called later for starting position
+	int firstCol = 0;
+	int firstRow = 0;
 	
 	// Creation of instance variable "area" which will represent the maze char array
 	private char[][] area = new char[10][10];
@@ -31,14 +31,50 @@ public class Maze {
 	
 
 	public char[][] generate() {
+		
+		// Initializes running boolean to facilitate how long the generate function runs for
+		boolean running = true;
+		
 		// Fills entire maze with "walls" char w
 		for (int i = 0; i < 10; i++) {
 			for (int u = 0; u < 10; u++) {
 				area[i][u] = 'w';
 			}
 		}
+		
+		// Selects random number between 1 and 9 for both row and col 
+		firstRow = (int)(Math.random() * 8) + 1;
+		
+		firstCol = (int)(Math.random() * 8) + 1;
+		
 		// Chooses random index inside the 2d array (not on the border) to start the opening
-		area[(int)(Math.random() * 8) + 1][(int)(Math.random() * 8) + 1] =  'o';
+		area[firstRow][firstCol] =  'o';
+		
+		
+		// Initializes two variables to keep track of where the maze is generating path
+		int currentRow = firstRow;
+		int currentCol = firstCol;
+		
+		// While loop to continuously implement the maze generation algorithm until no more spaces can be placed
+		while (running == true) {
+			if (((int)Math.random() * 2 + 1) == 1) {
+				if (((int)Math.random() * 2 + 1) == 1){
+					currentRow = currentRow + 1;
+				} else {
+					currentRow = currentRow - 1;
+				}
+			} else {
+				if (((int)Math.random() * 2 + 1) == 1) {
+					currentCol = currentCol + 1;
+				} else {
+					currentCol = currentCol - 1;
+				}
+				
+			}
+			
+			
+		}
+		
 		
 		// Returns fully generated maze
 		return area;
