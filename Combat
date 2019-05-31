@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+public class Combat {
+	public Combat() {
+		System.out.println("An enemy has appeared!\n");
+		
+		Enemy monster = new Enemy("Monster", "15", "75");
+		monster.getInfo();
+		
+		System.out.println("\nWhat would you like to do?");
+		System.out.println("Attack\tRun");
+		
+		Scanner text = new Scanner(System.in);
+		String input = text.next();
+		
+		/* TO BE USED ONCE CHARACTER IS COMPLETE
+		 * if (input.contentEquals("Attack") || input.contentEquals("attack")) {
+			String[] playerInformation = player.returnInfo();
+			int playerAttack = Integer.parseInt(information[1]);
+			
+			String[] enemyInformation
+		}
+		*/
+	}
+}
