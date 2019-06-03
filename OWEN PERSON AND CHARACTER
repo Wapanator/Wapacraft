@@ -1,0 +1,147 @@
+package cruzmartinez;
+
+public class Person {
+	
+	private String[] profile;
+	private String name;
+	private String attack;
+	private String health;
+	
+	public Person(String name, String attack, String health) {
+		profile[0] = name;
+		profile[1] = attack;
+		profile[2] = health;
+	}
+	
+	public void getInfo() {
+		System.out.println("Name: " + profile[0]);
+		System.out.println("Attack Stat: " + profile[1]);
+		System.out.println("Health: " + profile[2]);
+	}
+	
+	//
+	
+	
+	//---------NAME, ATTACK, AND HEALTH GETTERS AND SETTERS-----------
+	
+		public String getName()
+		{
+			return name;
+		}
+	
+		public void setName(String name)
+		{
+			this.name = name;
+		}
+	
+		public String getAttackStat()
+		{
+			return attack;
+		}
+		
+		public void setAttackStat (String newAttackStat)
+		{
+			attack = newAttackStat;
+		}
+		
+		public String getHealthStat()
+		{
+			return health;
+		}
+		
+		public void setHealthStat(String newHealthStat)
+		{
+			health = newHealthStat;
+		}
+		//---------------------------------------------------------
+}
+----------------------------------------------------------------------------------------------------------------------------------------
+package cruzmartinez;
+
+public class Character extends Person {
+
+	private int obtainItemProb;
+	private int runProb;
+	private int increaseAttackProb;
+	
+	public Character(String name, String attack, String health, int itemProb, int runningProb, int incAttackProb) {
+		super(name, attack, health);
+		obtainItemProb = itemProb;
+		runProb = runningProb;
+		increaseAttackProb = incAttackProb;		
+		// TODO Auto-generated constructor stub
+	}
+
+	//private int attackStat;
+	//private int healthStat;
+	
+
+	
+	/*
+	public Character(int obtainItemProb, int runProb, int increaseAttackProb)
+	{
+		super.person();
+		
+		
+	}
+	*/
+	/*
+	
+	*/
+	
+	//-----OBTAINITEM, RUN, AND INCREASEATTACK PROBABILITY GETTERS AND SETTERS-----
+	
+	public int getObtainItemProb()
+	{
+		return obtainItemProb;
+	}
+	
+	public void setObtainItemProb (int newObtainItemProb)
+	{
+		obtainItemProb = newObtainItemProb;
+	}
+	
+	public int getRunProb ()
+	{
+		return runProb;
+	}
+	
+	public void setRunProb (int newRunProb)
+	{
+		runProb = newRunProb;
+	}
+	
+	public int getIncreaseAttackProb()
+	{
+		return increaseAttackProb;
+	}
+	
+	public void setIncreaseAttackProb (int newIncreaseAttackProb)
+	{
+		increaseAttackProb = newIncreaseAttackProb;
+	}
+	//--------------------------------------------------------------------------------
+	
+	
+	Character player = new Character("Warrior", "0", "0", 0, 0, 0);
+	
+	
+	switch (player.getName()) {
+	case player.getName().equals("Warrior"):
+		player.setRunProb(20);
+		player.setObtainItemProb(30);
+		player.setIncreaseAttackProb(50);
+	case "Mage":
+		player.setRunProb(50);
+		player.setObtainItemProb(30);
+		player.setIncreaseAttackProb(30);
+	case "Rogue":
+		player.setRunProb(20);
+		player.setObtainItemProb(50);
+		player.setIncreaseAttackProb(30);
+		
+	}
+		
+	
+
+}
