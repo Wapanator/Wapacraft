@@ -1,3 +1,4 @@
+
 public class Maze {
 
 	/*
@@ -56,23 +57,59 @@ public class Maze {
 		int currentCol = firstCol;
 		
 		// While loop to continuously implement the maze generation algorithm until no more spaces can be placed
-		while (running == true) {
+		for (int i = 0; i < 25; i++) {
+			// picks a random int between one and two (fifty fifty) to decide whether it will build along x or y axis (col or row)
 			if (((int)Math.random() * 2 + 1) == 1) {
+				// picks another 50-50 to decide whether going positive or negative
 				if (((int)Math.random() * 2 + 1) == 1){
 					currentRow = currentRow + 1;
+					//checks to see if on border so no outofbound error is thrown
+					if (currentRow != 9) {
+					if (area[currentRow + 1][currentCol] == 'w') {
+						area[currentRow][currentCol] = 'o';
+					} else {
+						currentRow = currentRow - 1;
+					}
+					} else {
+						currentRow = currentRow - 1;
+					}
 				} else {
 					currentRow = currentRow - 1;
+					if (currentRow != 0) {
+					if (area[currentRow - 1][currentCol] == 'w') {
+						area[currentRow][currentCol] = 'o';
+					} else {
+						currentRow = currentRow + 1;
+					}
+					} else {
+						currentRow = currentRow + 1;
+					}
 				}
 			} else {
 				if (((int)Math.random() * 2 + 1) == 1) {
 					currentCol = currentCol + 1;
+					if (currentCol != 9) {
+					if (area[currentRow][currentCol + 1] == 'w') {
+						area[currentRow][currentCol] = 'o';
+					} else {
+						currentCol = currentCol - 1;
+					}
+					} else {
+					currentCol = currentCol - 1;
+				} 	
 				} else {
 					currentCol = currentCol - 1;
+					if (currentCol != 0) {
+					if (area[currentRow][currentCol - 1] == 'w') {
+						area[currentRow][currentCol] = 'o';
+					} else {
+						currentCol = currentCol + 1;
+					}
+					} else {
+						currentCol = currentCol + 1;
+					}
 				}
-				
 			}
-			
-			
 		}
 		
 		
