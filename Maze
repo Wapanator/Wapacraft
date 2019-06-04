@@ -18,11 +18,11 @@ public class Maze {
 	int firstRow = 0;
 	
 	// Creation of instance variable "area" which will represent the maze char array
-	private char[][] area = new char[10][10];
+	private char[][] area;
 	
 	// Maze constructor creates 2d char array 10x10
 	public Maze() {
-		area = new char[10][10];
+		area = new char[20][20];
 	}
 	
 	// Function to return maze
@@ -36,77 +36,127 @@ public class Maze {
 		// Initializes running boolean to facilitate how long the generate function runs for
 		boolean running = true;
 		
+		
+		boolean checkUp = true;
+		boolean checkDown = true;
+		boolean checkLeft = true;
+		boolean checkRight = true;
+		
 		// Fills entire maze with "walls" char w
-		for (int i = 0; i < 10; i++) {
-			for (int u = 0; u < 10; u++) {
+		for (int i = 0; i < 20; i++) {
+			for (int u = 0; u < 20; u++) {
 				area[i][u] = 'w';
 			}
 		}
 		
 		// Selects random number between 1 and 9 for both row and col 
-		firstRow = (int)(Math.random() * 8) + 1;
+		firstRow = (int)(Math.random() * 17) + 1;
 		
-		firstCol = (int)(Math.random() * 8) + 1;
+		firstCol = (int)(Math.random() * 17) + 1;
 		
 		// Chooses random index inside the 2d array (not on the border) to start the opening
 		area[firstRow][firstCol] =  'o';
-		
 		
 		// Initializes two variables to keep track of where the maze is generating path
 		int currentRow = firstRow;
 		int currentCol = firstCol;
 		
+		
+		int yeet = 0;
+		
 		// While loop to continuously implement the maze generation algorithm until no more spaces can be placed
-		for (int i = 0; i < 25; i++) {
+		while (running == true) {
+			
+			
+			if (checkUp == false && checkDown == false) {
+				if (checkLeft == false && checkRight == false) {
+					currentRow = firstRow;
+					currentCol = firstCol;
+					checkUp = true;
+					checkDown = true;
+					checkLeft = true;
+					checkRight = true;
+					yeet++;
+					if (yeet == 5) {
+						running = false;
+					}
+				}
+			}
+			
 			// picks a random int between one and two (fifty fifty) to decide whether it will build along x or y axis (col or row)
-			if (((int)Math.random() * 2 + 1) == 1) {
+			if (((int)(Math.random() * 2) + 1) == 1) {
 				// picks another 50-50 to decide whether going positive or negative
-				if (((int)Math.random() * 2 + 1) == 1){
+				if (((int)(Math.random() * 2) + 1) == 1){
 					currentRow = currentRow + 1;
 					//checks to see if on border so no outofbound error is thrown
-					if (currentRow != 9) {
-					if (area[currentRow + 1][currentCol] == 'w') {
-						area[currentRow][currentCol] = 'o';
-					} else {
-						currentRow = currentRow - 1;
-					}
-					} else {
-						currentRow = currentRow - 1;
-					}
+					if (currentRow != 19) {
+							if ((area[currentRow][currentCol + 1] == 'w') && (area[currentRow][currentCol - 1] == 'w')) {
+								area[currentRow][currentCol] = 'o';
+								checkUp = true;
+								checkDown = true;
+								checkLeft = true;
+								checkRight = true;
+							} else {
+								currentRow = currentRow - 1;
+								checkUp = false;
+							}
+						} else {
+							currentRow = currentRow - 1;
+							checkUp = false;
+						}
 				} else {
 					currentRow = currentRow - 1;
 					if (currentRow != 0) {
-					if (area[currentRow - 1][currentCol] == 'w') {
-						area[currentRow][currentCol] = 'o';
-					} else {
-						currentRow = currentRow + 1;
-					}
-					} else {
-						currentRow = currentRow + 1;
+							if (area[currentRow][currentCol + 1] == 'w' && area[currentRow][currentCol - 1] == 'w') {
+								area[currentRow][currentCol] = 'o';
+								checkUp = true;
+								checkDown = true;
+								checkLeft = true;
+								checkRight = true;
+							} else {
+								currentRow = currentRow + 1;
+								checkDown = false;
+							}
+						} else {
+							currentRow = currentRow + 1;
+							checkDown = false;
 					}
 				}
 			} else {
-				if (((int)Math.random() * 2 + 1) == 1) {
+				if (((int)(Math.random() * 2) + 1) == 1) {
 					currentCol = currentCol + 1;
-					if (currentCol != 9) {
-					if (area[currentRow][currentCol + 1] == 'w') {
-						area[currentRow][currentCol] = 'o';
-					} else {
-						currentCol = currentCol - 1;
-					}
-					} else {
-					currentCol = currentCol - 1;
-				} 	
+					if (currentCol != 19) {
+							if ((area[currentRow + 1][currentCol] == 'w') && (area[currentRow - 1][currentCol] == 'w')) {
+								area[currentRow][currentCol] = 'o';
+								checkUp = true;
+								checkDown = true;
+								checkLeft = true;
+								checkRight = true;
+							} else {
+								currentCol = currentCol - 1;
+								checkLeft = false;
+							}
+						} else {
+							currentCol = currentCol - 1;
+							checkLeft = false;
+					} 	
 				} else {
 					currentCol = currentCol - 1;
 					if (currentCol != 0) {
-					if (area[currentRow][currentCol - 1] == 'w') {
-						area[currentRow][currentCol] = 'o';
-					} else {
-						currentCol = currentCol + 1;
-					}
-					} else {
-						currentCol = currentCol + 1;
+							if ((area[currentRow + 1][currentCol] == 'w') && (area[currentRow - 1][currentCol] == 'w')) {
+								area[currentRow][currentCol] = 'o';
+								checkUp = true;
+								checkDown = true;
+								checkLeft = true;
+								checkRight = true;
+							} else {
+								currentCol = currentCol + 1;
+								checkRight = false;
+							}
+						} else {
+							currentCol = currentCol + 1;
+							checkRight = false;
+							
 					}
 				}
 			}
@@ -125,12 +175,13 @@ public class Maze {
 	public static void main(String[] args) {
 		Maze yeet = new Maze();
 		yeet.generate();
-		for (int i = 0; i < 10; i++) {
-			for (int u = 0; u < 10; u++) {
+		for (int i = 0; i < 20; i++) {
+			for (int u = 0; u < 20; u++) {
 				System.out.print(yeet.getMazeContent(i, u));
 			}
 			System.out.println();
 		}
+		System.out.println(((int)(Math.random() * 2) + 1));
 	}
 	
 	
