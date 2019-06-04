@@ -1,4 +1,7 @@
 
+import java.util.ArrayList;
+
+
 public class Maze {
 
 	/*
@@ -33,14 +36,6 @@ public class Maze {
 
 	public char[][] generate() {
 		
-		// Initializes running boolean to facilitate how long the generate function runs for
-		boolean running = true;
-		
-		
-		boolean checkUp = true;
-		boolean checkDown = true;
-		boolean checkLeft = true;
-		boolean checkRight = true;
 		
 		// Fills entire maze with "walls" char w
 		for (int i = 0; i < 20; i++) {
@@ -62,13 +57,8 @@ public class Maze {
 		int currentCol = firstCol;
 		
 		// While loop to continuously implement the maze generation algorithm until no more spaces can be placed
-		while (true) {
-			if (checkUp == false && checkDown == false &&
-				checkLeft == false && checkRight == false) {
-				System.out.println(currentRow);
-				System.out.println(currentCol);
-				break;
-			}
+		for (int i = 0; i < 9000000; i++){
+			
 			
 			// picks a random int between one and two (fifty fifty) to decide whether it will build along x or y axis (col or row)
 			if (((int)(Math.random() * 2) + 1) == 1) {
@@ -77,106 +67,100 @@ public class Maze {
 					currentRow = currentRow + 1;
 					//checks to see if on border so no outofbound error is thrown
 					if (area[currentRow][currentCol] == 'o') {
-						checkUp = true;
-						checkDown = true;
-						checkLeft = true;
-						checkRight = true;
+					
 						continue;
 					}
 					if (currentRow != 19) {
 							if ((area[currentRow][currentCol + 1] == 'w') && (area[currentRow][currentCol - 1] == 'w')) {
 								area[currentRow][currentCol] = 'o';
-								checkUp = true;
-								checkDown = true;
-								checkLeft = true;
-								checkRight = true;
+								
 							} else {
 								currentRow = currentRow - 1;
-								checkUp = false;
+							
 							}
 						} else {
 							currentRow = currentRow - 1;
-							checkUp = false;
+							
 						}
 				} else {
 					currentRow = currentRow - 1;
 					if (area[currentRow][currentCol] == 'o') {
-						checkUp = true;
-						checkDown = true;
-						checkLeft = true;
-						checkRight = true;
+					
 						continue;
 					}
 					if (currentRow != 0) {
 							if (area[currentRow][currentCol + 1] == 'w' && area[currentRow][currentCol - 1] == 'w') {
 								area[currentRow][currentCol] = 'o';
-								checkUp = true;
-								checkDown = true;
-								checkLeft = true;
-								checkRight = true;
+								
 							} else {
 								currentRow = currentRow + 1;
-								checkDown = false;
+								
 							}
 						} else {
 							currentRow = currentRow + 1;
-							checkDown = false;
+							
 					}
 				}
 			} else {
 				if (((int)(Math.random() * 2) + 1) == 1) {
 					currentCol = currentCol + 1;
 					if (area[currentRow][currentCol] == 'o') {
-						checkUp = true;
-						checkDown = true;
-						checkLeft = true;
-						checkRight = true;
+					
 						continue;
 					}
 					if (currentCol != 19) {
 							if ((area[currentRow + 1][currentCol] == 'w') && (area[currentRow - 1][currentCol] == 'w')) {
 								area[currentRow][currentCol] = 'o';
-								checkUp = true;
-								checkDown = true;
-								checkLeft = true;
-								checkRight = true;
+							
 							} else {
 								currentCol = currentCol - 1;
-								checkLeft = false;
+								
 							}
 						} else {
 							currentCol = currentCol - 1;
-							checkLeft = false;
+							
 					} 	
 				} else {
 					currentCol = currentCol - 1;
 					if (area[currentRow][currentCol] == 'o') {
-						checkUp = true;
-						checkDown = true;
-						checkLeft = true;
-						checkRight = true;
+						
 						continue;
 					}
 					if (currentCol != 0) {
 							if ((area[currentRow + 1][currentCol] == 'w') && (area[currentRow - 1][currentCol] == 'w')) {
 								area[currentRow][currentCol] = 'o';
-								checkUp = true;
-								checkDown = true;
-								checkLeft = true;
-								checkRight = true;
+							
 							} else {
 								currentCol = currentCol + 1;
-								checkRight = false;
+								
 							}
 						} else {
 							currentCol = currentCol + 1;
-							checkRight = false;
-							
+								
 					}
 				}
 			}
 		}
 		
+		// Places character at the starting position
+		char character = 'c';
+		
+		area[firstRow][firstCol] = character;
+		
+
+		ArrayList<Integer> coords = new ArrayList<Integer>();
+		
+		
+		
+		for (int i = 0; i < 20; i++) {
+			for (int u = 0; u < 20; u++) {
+				if (area[i][u] == 'o') {
+					area[i][u] = 't';
+					coords.add(i);
+					coords.add(u);
+				}
+			}
+		}
 		
 		// Returns fully generated maze
 		return area;
