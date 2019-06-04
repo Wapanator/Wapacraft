@@ -1,0 +1,121 @@
+public class Character extends Person {
+
+	private int obtainItemProb;
+	private int runProb;
+	private int increaseAttackProb;
+	
+	public Character(String name, String attack, String health, int itemProb, int runningProb, int incAttackProb) {
+		super(name, attack, health);
+		obtainItemProb = itemProb;
+		runProb = runningProb;
+		increaseAttackProb = incAttackProb;		
+		// TODO Auto-generated constructor stub
+	}
+
+	//private int attackStat;
+	//private int healthStat;
+	
+
+	
+	/*
+	public Character(int obtainItemProb, int runProb, int increaseAttackProb)
+	{
+		super.person();
+		
+		
+	}
+	*/
+	/*
+	
+	*/
+	
+	//-----OBTAINITEM, RUN, AND INCREASEATTACK PROBABILITY GETTERS AND SETTERS-----
+	
+	public int getObtainItemProb()
+	{
+		return obtainItemProb;
+	}
+	
+	public void setObtainItemProb (int newObtainItemProb)
+	{
+		obtainItemProb = newObtainItemProb;
+	}
+	
+	public int getRunProb ()
+	{
+		return runProb;
+	}
+	
+	public void setRunProb (int newRunProb)
+	{
+		runProb = newRunProb;
+	}
+	
+	public int getIncreaseAttackProb()
+	{
+		return increaseAttackProb;
+	}
+	
+	public void setIncreaseAttackProb (int newIncreaseAttackProb)
+	{
+		increaseAttackProb = newIncreaseAttackProb;
+	}
+	//--------------------------------------------------------------------------------
+	
+	public String toString()
+	{
+		String output = "Class: " + getName() + "/n" +
+						"Attack: " + getAttackStat() + "/n" +
+						"Health: " + getHealthStat() + "/n" +
+						"Chance of Running: " + getRunProb() + "/n" +
+						"Chance of Obtaining an Item: " + getObtainItemProb() + "/n" +
+						"Chance of Increasing Attack: " + getIncreaseAttackProb() + "/n";
+		return output;
+	}
+	
+	
+	public static void main (String[] args) {
+	
+		Character player = new Character("Warrior", "100", "100", 0, 0, 0);
+				
+		String myName = player.getName();
+		
+		//System.out.println(myName);
+		
+		switch (myName) {
+		case "Warrior":
+			player.setRunProb(20);
+			player.setObtainItemProb(30);
+			player.setIncreaseAttackProb(30);
+		case "Mage":
+			player.setRunProb(50);
+			player.setObtainItemProb(30);
+			player.setIncreaseAttackProb(30);
+		case "Rogue":
+			player.setRunProb(20);
+			player.setObtainItemProb(50);
+			player.setIncreaseAttackProb(30);
+		default:
+			player.setRunProb(20);
+			player.setObtainItemProb(30);
+			player.setIncreaseAttackProb(30);
+	
+		System.out.println(player);
+			
+			/*	String output = "Class: " + player.getName() + "/n" +
+					"Attack: " + player.getAttackStat() + "/n" +
+					"Health: " + player.getHealthStat() + "/n" +
+					"Chance of Running: " + player.getRunProb() + "/n" +
+					"Chance of Obtaining an Item: " + player.getObtainItemProb() + "/n" +
+					"Chance of Increasing Attack: " + player.getIncreaseAttackProb() + "/n";
+			
+			System.out.println(output);
+		*/
+		}
+		
+	}
+		
+		
+	
+
+}
