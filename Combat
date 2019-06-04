@@ -7,18 +7,82 @@ public class Combat {
 		Enemy monster = new Enemy("Monster", "15", "75");
 		monster.getInfo();
 		
-		System.out.println("\nWhat would you like to do?");
-		System.out.println("Attack\tRun");
-		
 		Scanner text = new Scanner(System.in);
-		String input = text.next();
+		
 		
 		/* TO BE USED ONCE CHARACTER IS COMPLETE
-		 * if (input.contentEquals("Attack") || input.contentEquals("attack")) {
-			String[] playerInformation = player.returnInfo();
-			int playerAttack = Integer.parseInt(information[1]);
+		 * 
+		 * String[] playerInformation = player.returnInfo();
+		 * String[] enemyInformation = enemy.returnInfo();
+		 * 
+		 * int enemyHealth = Integer.parseInt(enemyInformation[2]);
+		 * int enemyAttack = Integer.parseInt(enemyInformation[1]);
+		 * 
+		 * int playerAttack = Integer.parseInt(playerInformation[1]);
+		 * int playerHealth = Integer.praseInt(playerInformation[2]);
+		 * 
+		 * while (enemyHealth > 0){
+		 * 
+		 * 	System.out.println("\nWhat would you like to do?");
+		 * 	System.out.println("Attack\tRun");
+		 * 
+		 * 	String input = text.next();
+		 * 
+		 * 	if (input.contentEquals("Attack") || input.contentEquals("attack")) {
 			
-			String[] enemyInformation
+				enemyHealth -= playerAttack;
+				String newEnemyHealth = Integer.toString(enemyHealth);
+			
+				monster.setHealth(newEnemyHealth);
+			
+				System.out.println("\nYou have chosen to attack!");
+				System.out.println("Enemy health decreases by " + playerAttack + "\nNew Stats:\n");
+			
+				player.getInfo();
+				System.out.println();
+				monster.getInfo();
+			
+				System.out.println("\nThe enemy now attacks!");
+			
+				int enemyAttackProb = (int) (Math.random() * 10);
+				
+				if (enemyAttackProb < 7) {
+					System.out.println("\nPlayer health decreases by " + enemyAttack);
+				
+					playerHealth -= enemyAttack;
+					String newPlayerHealth = Integer.toString(playerHealth);
+				
+					player.setHealth(newPlayerHealth);
+				
+					System.out.println("\nNew Stats:\n");
+					player.getInfo();
+					System.out.println();
+					monster.getInfo();
+				}
+			
+				else {
+					System.out.println("\nThe enemy missed!");
+				}
+			
+			}
+		
+			else if (input.contentEquals("Run") || input.contentEquals("run")) {
+			
+				if (playerInformation[0].contentEquals("Mage"){
+					int runProb = (int) (Math.random() * 10);
+					if ( runProb < 5) {
+					System.out.println("You have successfully escaped!");
+					}
+				}
+				
+				else {
+					int runProb = (int) (Math.random() * 10);
+					if (runProb < 2) {
+					System.out.println("You have successfully escaped!");
+					}
+				}	
+				
+			}
 		}
 		*/
 	}
