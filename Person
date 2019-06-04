@@ -11,6 +11,14 @@ public class Person {
 		profile[2] = health;
 	}
 	
+	public void setHealth(String health) {
+		profile[2] = health;
+	}
+	
+	public String[] returnInfo() {
+		return profile;
+	}
+	
 	public void getInfo() {
 		System.out.println("Name: " + profile[0]);
 		System.out.println("Attack Stat: " + profile[1]);
