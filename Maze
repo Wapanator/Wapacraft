@@ -61,26 +61,13 @@ public class Maze {
 		int currentRow = firstRow;
 		int currentCol = firstCol;
 		
-		
-		int yeet = 0;
-		
 		// While loop to continuously implement the maze generation algorithm until no more spaces can be placed
-		while (running == true) {
-			
-			
-			if (checkUp == false && checkDown == false) {
-				if (checkLeft == false && checkRight == false) {
-					currentRow = firstRow;
-					currentCol = firstCol;
-					checkUp = true;
-					checkDown = true;
-					checkLeft = true;
-					checkRight = true;
-					yeet++;
-					if (yeet == 5) {
-						running = false;
-					}
-				}
+		while (true) {
+			if (checkUp == false && checkDown == false &&
+				checkLeft == false && checkRight == false) {
+				System.out.println(currentRow);
+				System.out.println(currentCol);
+				break;
 			}
 			
 			// picks a random int between one and two (fifty fifty) to decide whether it will build along x or y axis (col or row)
@@ -89,6 +76,13 @@ public class Maze {
 				if (((int)(Math.random() * 2) + 1) == 1){
 					currentRow = currentRow + 1;
 					//checks to see if on border so no outofbound error is thrown
+					if (area[currentRow][currentCol] == 'o') {
+						checkUp = true;
+						checkDown = true;
+						checkLeft = true;
+						checkRight = true;
+						continue;
+					}
 					if (currentRow != 19) {
 							if ((area[currentRow][currentCol + 1] == 'w') && (area[currentRow][currentCol - 1] == 'w')) {
 								area[currentRow][currentCol] = 'o';
@@ -106,6 +100,13 @@ public class Maze {
 						}
 				} else {
 					currentRow = currentRow - 1;
+					if (area[currentRow][currentCol] == 'o') {
+						checkUp = true;
+						checkDown = true;
+						checkLeft = true;
+						checkRight = true;
+						continue;
+					}
 					if (currentRow != 0) {
 							if (area[currentRow][currentCol + 1] == 'w' && area[currentRow][currentCol - 1] == 'w') {
 								area[currentRow][currentCol] = 'o';
@@ -125,6 +126,13 @@ public class Maze {
 			} else {
 				if (((int)(Math.random() * 2) + 1) == 1) {
 					currentCol = currentCol + 1;
+					if (area[currentRow][currentCol] == 'o') {
+						checkUp = true;
+						checkDown = true;
+						checkLeft = true;
+						checkRight = true;
+						continue;
+					}
 					if (currentCol != 19) {
 							if ((area[currentRow + 1][currentCol] == 'w') && (area[currentRow - 1][currentCol] == 'w')) {
 								area[currentRow][currentCol] = 'o';
@@ -142,6 +150,13 @@ public class Maze {
 					} 	
 				} else {
 					currentCol = currentCol - 1;
+					if (area[currentRow][currentCol] == 'o') {
+						checkUp = true;
+						checkDown = true;
+						checkLeft = true;
+						checkRight = true;
+						continue;
+					}
 					if (currentCol != 0) {
 							if ((area[currentRow + 1][currentCol] == 'w') && (area[currentRow - 1][currentCol] == 'w')) {
 								area[currentRow][currentCol] = 'o';
