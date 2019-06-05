@@ -120,8 +120,8 @@ public class Maze {
 								// If conditions aren't met, backtrack
 							} else {
 								currentCol = currentCol - 1;
-								
 							}
+							// If on border, backtrack
 						} else {
 							currentCol = currentCol - 1;
 							
