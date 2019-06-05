@@ -1,7 +1,4 @@
 
-import java.util.ArrayList;
-
-
 public class Maze {
 
 	/*
@@ -33,7 +30,7 @@ public class Maze {
 		return this.area;
 	}
 	
-
+	// Function to generate maze
 	public char[][] generate() {
 		
 		
@@ -60,58 +57,67 @@ public class Maze {
 		for (int i = 0; i < 9000000; i++){
 			
 			
-			// picks a random int between one and two (fifty fifty) to decide whether it will build along x or y axis (col or row)
+			// Picks a random int between one and two (fifty fifty) to decide whether it will build along x or y axis (col or row)
 			if (((int)(Math.random() * 2) + 1) == 1) {
-				// picks another 50-50 to decide whether going positive or negative
+				// Picks another 50-50 to decide whether going positive or negative
 				if (((int)(Math.random() * 2) + 1) == 1){
+					// Increments currentRow by 1 if positive is selected
 					currentRow = currentRow + 1;
-					//checks to see if on border so no outofbound error is thrown
+					// Checks to see if already on a filled in space
 					if (area[currentRow][currentCol] == 'o') {
-					
 						continue;
 					}
+					// Checks to see if on border so no outofbound error is thrown
 					if (currentRow != 19) {
+						// If spaces adjacent to currentRow are walls, turn index into an opening
 							if ((area[currentRow][currentCol + 1] == 'w') && (area[currentRow][currentCol - 1] == 'w')) {
 								area[currentRow][currentCol] = 'o';
-								
+								// If conditions aren't met, backtrack
 							} else {
 								currentRow = currentRow - 1;
-							
 							}
+							// If on border, backtrack
 						} else {
 							currentRow = currentRow - 1;
 							
 						}
 				} else {
+					// Decrements currentRow if negative is selected
 					currentRow = currentRow - 1;
+					// Checks to see if already on a filled in space
 					if (area[currentRow][currentCol] == 'o') {
-					
 						continue;
 					}
+					// Checks to see if on border so no outofbound error is thrown
 					if (currentRow != 0) {
+						// If spaces adjacent to currentRow are walls, turn index into an opening
 							if (area[currentRow][currentCol + 1] == 'w' && area[currentRow][currentCol - 1] == 'w') {
 								area[currentRow][currentCol] = 'o';
-								
+								// If conditions aren't met, backtrack
 							} else {
 								currentRow = currentRow + 1;
-								
 							}
+							// If on border, backtrack
 						} else {
 							currentRow = currentRow + 1;
 							
 					}
 				}
+				// If original Math.random selects 2, travel along Columns
 			} else {
 				if (((int)(Math.random() * 2) + 1) == 1) {
+					// Increments currentCol by 1 if positive is selected
 					currentCol = currentCol + 1;
+					// Checks to see if already on a filled in space
 					if (area[currentRow][currentCol] == 'o') {
-					
 						continue;
 					}
+					// Checks to see if on border so no outofbound error is thrown
 					if (currentCol != 19) {
+						// If spaces adjacent to currentCol are walls, turn index into an opening
 							if ((area[currentRow + 1][currentCol] == 'w') && (area[currentRow - 1][currentCol] == 'w')) {
 								area[currentRow][currentCol] = 'o';
-							
+								// If conditions aren't met, backtrack
 							} else {
 								currentCol = currentCol - 1;
 								
@@ -121,19 +127,22 @@ public class Maze {
 							
 					} 	
 				} else {
+					// Decrements currentCol by 1 if negative is selected
 					currentCol = currentCol - 1;
+					// Checks to see if already on a filled in space
 					if (area[currentRow][currentCol] == 'o') {
-						
 						continue;
 					}
+					// Checks to see if on border so no outofbound error is thrown
 					if (currentCol != 0) {
+						// If spaces adjacent to currentRow are walls, turn index into an opening
 							if ((area[currentRow + 1][currentCol] == 'w') && (area[currentRow - 1][currentCol] == 'w')) {
 								area[currentRow][currentCol] = 'o';
-							
+								// If conditions aren't met, backtrack
 							} else {
 								currentCol = currentCol + 1;
-								
 							}
+							// If on border, backtrack
 						} else {
 							currentCol = currentCol + 1;
 								
@@ -147,17 +156,42 @@ public class Maze {
 		
 		area[firstRow][firstCol] = character;
 		
-
-		ArrayList<Integer> coords = new ArrayList<Integer>();
+		// Populates maze with 4 chests, one in each corner
+		for (int i = 0; i < 20; i++) {
+			if (area[1][i] == 'o') {
+				area[1][i] = 't';
+				break;
+			}
+		}
 		
+		for (int i = 19; i > 0; i--) {
+			if (area[1][i] == 'o') {
+				area[1][i] = 't';
+				break;
+			}
+		}
 		
+		for (int i = 0; i < 20; i++) {
+			if (area[18][i] == 'o') {
+				area[18][i] = 't';
+				break;
+			}
+		}
 		
+		for (int i = 19; i > 0; i--) {
+			if (area[18][i] == 'o') {
+				area[18][i] = 't';
+				break;
+			}
+		}
+		
+	// Replaces openings with a 1 in 30 chance with enemies
 		for (int i = 0; i < 20; i++) {
 			for (int u = 0; u < 20; u++) {
 				if (area[i][u] == 'o') {
-					area[i][u] = 't';
-					coords.add(i);
-					coords.add(u);
+					if (((int)(Math.random() * 30) + 1) == 5) {
+						area[i][u] = 'e';
+					}
 				}
 			}
 		}
@@ -180,7 +214,7 @@ public class Maze {
 			}
 			System.out.println();
 		}
-		System.out.println(((int)(Math.random() * 2) + 1));
+		
 	}
 	
 	
