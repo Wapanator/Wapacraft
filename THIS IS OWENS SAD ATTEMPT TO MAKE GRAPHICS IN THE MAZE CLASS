@@ -1,0 +1,245 @@
+package cruzmartinez;
+
+//classes used to change font colors
+import java.awt.Color;
+import java.awt.Graphics;
+
+public class Maze {
+
+	/*
+	 * Maze character representations
+	 * 
+	 * w = "wall"
+	 * o = "opening"
+	 * e = "enemy"
+	 * t = "treasure"
+	 * c = "character"
+	 * 
+	 */
+	
+	
+	//initializes variables to be called later for starting position
+	int firstCol = 0;
+	int firstRow = 0;
+	
+	// Creation of instance variable "area" which will represent the maze char array
+	private char[][] area;
+	
+	// Maze constructor creates 2d char array 10x10
+	public Maze() {
+		area = new char[20][20];
+	}
+	
+	// Function to return maze
+	public char[][] getMaze() {
+		return this.area;
+	}
+	
+	// Function to generate maze
+	public char[][] generate() {
+		
+		
+		// Fills entire maze with "walls" char w
+		for (int i = 0; i < 20; i++) {
+			for (int u = 0; u < 20; u++) {
+				area[i][u] = 'w';
+			}
+		}
+		
+		// Selects random number between 1 and 9 for both row and col 
+		firstRow = (int)(Math.random() * 17) + 1;
+		
+		firstCol = (int)(Math.random() * 17) + 1;
+		
+		// Chooses random index inside the 2d array (not on the border) to start the opening
+		area[firstRow][firstCol] =  'o';
+		
+		// Initializes two variables to keep track of where the maze is generating path
+		int currentRow = firstRow;
+		int currentCol = firstCol;
+		
+		// While loop to continuously implement the maze generation algorithm until no more spaces can be placed
+		for (int i = 0; i < 9000000; i++){
+			
+			
+			// Picks a random int between one and two (fifty fifty) to decide whether it will build along x or y axis (col or row)
+			if (((int)(Math.random() * 2) + 1) == 1) {
+				// Picks another 50-50 to decide whether going positive or negative
+				if (((int)(Math.random() * 2) + 1) == 1){
+					// Increments currentRow by 1 if positive is selected
+					currentRow = currentRow + 1;
+					// Checks to see if already on a filled in space
+					if (area[currentRow][currentCol] == 'o') {
+						continue;
+					}
+					// Checks to see if on border so no outofbound error is thrown
+					if (currentRow != 19) {
+						// If spaces adjacent to currentRow are walls, turn index into an opening
+							if ((area[currentRow][currentCol + 1] == 'w') && (area[currentRow][currentCol - 1] == 'w')) {
+								area[currentRow][currentCol] = 'o';
+								// If conditions aren't met, backtrack
+							} else {
+								currentRow = currentRow - 1;
+							}
+							// If on border, backtrack
+						} else {
+							currentRow = currentRow - 1;
+							
+						}
+				} else {
+					// Decrements currentRow if negative is selected
+					currentRow = currentRow - 1;
+					// Checks to see if already on a filled in space
+					if (area[currentRow][currentCol] == 'o') {
+						continue;
+					}
+					// Checks to see if on border so no outofbound error is thrown
+					if (currentRow != 0) {
+						// If spaces adjacent to currentRow are walls, turn index into an opening
+							if (area[currentRow][currentCol + 1] == 'w' && area[currentRow][currentCol - 1] == 'w') {
+								area[currentRow][currentCol] = 'o';
+								// If conditions aren't met, backtrack
+							} else {
+								currentRow = currentRow + 1;
+							}
+							// If on border, backtrack
+						} else {
+							currentRow = currentRow + 1;
+							
+					}
+				}
+				// If original Math.random selects 2, travel along Columns
+			} else {
+				if (((int)(Math.random() * 2) + 1) == 1) {
+					// Increments currentCol by 1 if positive is selected
+					currentCol = currentCol + 1;
+					// Checks to see if already on a filled in space
+					if (area[currentRow][currentCol] == 'o') {
+						continue;
+					}
+					// Checks to see if on border so no outofbound error is thrown
+					if (currentCol != 19) {
+						// If spaces adjacent to currentCol are walls, turn index into an opening
+							if ((area[currentRow + 1][currentCol] == 'w') && (area[currentRow - 1][currentCol] == 'w')) {
+								area[currentRow][currentCol] = 'o';
+								// If conditions aren't met, backtrack
+							} else {
+								currentCol = currentCol - 1;
+							}
+							// If on border, backtrack
+						} else {
+							currentCol = currentCol - 1;
+							
+					} 	
+				} else {
+					// Decrements currentCol by 1 if negative is selected
+					currentCol = currentCol - 1;
+					// Checks to see if already on a filled in space
+					if (area[currentRow][currentCol] == 'o') {
+						continue;
+					}
+					// Checks to see if on border so no outofbound error is thrown
+					if (currentCol != 0) {
+						// If spaces adjacent to currentRow are walls, turn index into an opening
+							if ((area[currentRow + 1][currentCol] == 'w') && (area[currentRow - 1][currentCol] == 'w')) {
+								area[currentRow][currentCol] = 'o';
+								// If conditions aren't met, backtrack
+							} else {
+								currentCol = currentCol + 1;
+							}
+							// If on border, backtrack
+						} else {
+							currentCol = currentCol + 1;
+								
+					}
+				}
+			}
+		}
+		
+		// Places character at the starting position
+		char character = 'c';
+		
+		area[firstRow][firstCol] = character;
+		
+		// Populates maze with 4 chests, one in each corner
+		for (int i = 0; i < 20; i++) {
+			if (area[1][i] == 'o') {
+				area[1][i] = 't';
+				break;
+			}
+		}
+		
+		for (int i = 19; i > 0; i--) {
+			if (area[1][i] == 'o') {
+				area[1][i] = 't';
+				break;
+			}
+		}
+		
+		for (int i = 0; i < 20; i++) {
+			if (area[18][i] == 'o') {
+				area[18][i] = 't';
+				break;
+			}
+		}
+		
+		for (int i = 19; i > 0; i--) {
+			if (area[18][i] == 'o') {
+				area[18][i] = 't';
+				break;
+			}
+		}
+		
+	// Replaces openings with a 1 in 30 chance with enemies
+		for (int i = 0; i < 20; i++) {
+			for (int u = 0; u < 20; u++) {
+				if (area[i][u] == 'o') {
+					if (((int)(Math.random() * 30) + 1) == 5) {
+						area[i][u] = 'e';
+					}
+				}
+			}
+		}
+		
+		// Returns fully generated maze
+		return area;
+	}
+	// Returns the content of a specific index in the maze
+	public char getMazeContent(int x, int y) {
+		return (area[x][y]);
+	}
+	
+	// Main function
+	public static void main(String[] args) {
+		Maze yeet = new Maze();
+		yeet.generate();
+		for (int i = 0; i < 20; i++) {
+			for (int u = 0; u < 20; u++) {
+				System.out.print(yeet.getMazeContent(i, u));
+			}
+			System.out.println();
+		}
+		
+		//owen's garbage that gonna try and change colors
+		for (int i = 0; i < 20; i++) {
+			for (int u = 0; u < 20; u++) {
+				if( area[i][u] == 'w') {
+					area[i][u].setColor(Color.black);
+				}
+				if( area[i][u] == 'o') {
+					area[i][u].setColor(Color.red);
+				}
+				if( area[i][u] == 'e') {
+					area[i][u].setColor(Color.blue);
+				}
+				if( area[i][u] == 't') {
+					area[i][u].setColor(Color.green);
+				}
+					
+			
+			}
+		
+	}
+	
+	
+	
