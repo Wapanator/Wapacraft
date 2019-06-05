@@ -1,4 +1,6 @@
 
+import java.util.Scanner;
+
 public class Maze {
 
 	/*
@@ -20,7 +22,7 @@ public class Maze {
 	// Creation of instance variable "area" which will represent the maze char array
 	private char[][] area;
 	
-	// Maze constructor creates 2d char array 10x10
+	// Maze constructor creates 2d char array 20x20
 	public Maze() {
 		area = new char[20][20];
 	}
@@ -41,7 +43,7 @@ public class Maze {
 			}
 		}
 		
-		// Selects random number between 1 and 9 for both row and col 
+		// Selects random number between 1 and 18 for both row and col 
 		firstRow = (int)(Math.random() * 17) + 1;
 		
 		firstCol = (int)(Math.random() * 17) + 1;
@@ -53,7 +55,7 @@ public class Maze {
 		int currentRow = firstRow;
 		int currentCol = firstCol;
 		
-		// While loop to continuously implement the maze generation algorithm until no more spaces can be placed
+		// For loop to continuously implement the maze generation algorithm a lot of times
 		for (int i = 0; i < 9000000; i++){
 			
 			
@@ -203,6 +205,7 @@ public class Maze {
 	public char getMazeContent(int x, int y) {
 		return (area[x][y]);
 	}
+	
 	
 	// Main function
 	public static void main(String[] args) {
