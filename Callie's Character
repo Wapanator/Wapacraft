@@ -1,0 +1,23 @@
+import java.util.ArrayList;
+
+public class Character extends Person {
+	// creates instance variables
+	private ArrayList<String> inventory;
+	private String item;
+	// creates a character with a name, attack, and health
+	public Character(String name, String attack, String health) {
+		super(name, attack, health);	
+	}
+	// void method adds items to inventory
+	public void setInventory(String item) {
+		inventory.add(item);
+	}
+	// void method outputs inventory contents
+	public void getInventory() {
+		System.out.println("Inventory contents: ");
+		for (int i = 0; i < inventory.size(); i++) {
+			System.out.print(inventory.get(i) + "\t");
+		}
+	}
+
+}
