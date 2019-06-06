@@ -8,27 +8,24 @@ public class Combat {
 		monster.getInfo();
 		
 		Scanner text = new Scanner(System.in);
-		
-		
-		/* TO BE USED ONCE CHARACTER IS COMPLETE
-		 * 
-		 * String[] playerInformation = player.returnInfo();
-		 * String[] enemyInformation = enemy.returnInfo();
-		 * 
-		 * int enemyHealth = Integer.parseInt(enemyInformation[2]);
-		 * int enemyAttack = Integer.parseInt(enemyInformation[1]);
-		 * 
-		 * int playerAttack = Integer.parseInt(playerInformation[1]);
-		 * int playerHealth = Integer.praseInt(playerInformation[2]);
-		 * 
-		 * while (enemyHealth > 0){
-		 * 
-		 * 	System.out.println("\nWhat would you like to do?");
-		 * 	System.out.println("Attack\tRun");
-		 * 
-		 * 	String input = text.next();
-		 * 
-		 * 	if (input.contentEquals("Attack") || input.contentEquals("attack")) {
+		 
+		 String[] playerInformation = player.returnInfo();
+		 String[] enemyInformation = enemy.returnInfo();
+		 
+		 int enemyHealth = Integer.parseInt(enemyInformation[2]);
+		 int enemyAttack = Integer.parseInt(enemyInformation[1]);
+		 
+		 int playerAttack = Integer.parseInt(playerInformation[1]);
+		 int playerHealth = Integer.praseInt(playerInformation[2]);
+		 
+		 while (enemyHealth > 0) {
+		 
+		 System.out.println("\nWhat would you like to do?");
+		 System.out.println("Attack\tRun");
+		 
+		 String input = text.next();
+		 
+		 if (input.contentEquals("Attack") || input.contentEquals("attack")) {
 			
 				enemyHealth -= playerAttack;
 				String newEnemyHealth = Integer.toString(enemyHealth);
@@ -84,6 +81,6 @@ public class Combat {
 				
 			}
 		}
-		*/
+		
 	}
 }
