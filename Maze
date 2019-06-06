@@ -7,7 +7,7 @@ public class Maze {
 	 * Maze character representations
 	 * 
 	 * w = "wall"
-	 * o = "opening"
+	 * o = "opening"`	  
 	 * e = "enemy"
 	 * t = "treasure"
 	 * c = "character"
@@ -201,10 +201,67 @@ public class Maze {
 		// Returns fully generated maze
 		return area;
 	}
+	
+	
 	// Returns the content of a specific index in the maze
 	public char getMazeContent(int x, int y) {
 		return (area[x][y]);
 	}
+	
+	
+	public char[][] moveCharacter(){
+		
+		int characterRow = 0;
+		int characterCol = 0;
+		
+		for (int i = 0; i < 20; i++) {
+			for (int u = 0; u < 20; u++) {
+				if (area[i][u] == 'c') {
+					characterRow = i;
+					characterCol = u;
+					break;
+				}
+			}
+		}
+		
+		Scanner input = new Scanner(System.in);
+		String direction = input.nextLine();
+		
+		if (direction == "up") {
+			if (area[(characterRow) - 1][characterCol] == 'o') {
+				area[characterRow][characterCol] = 'o';
+				area[(characterRow) - 1][characterCol] = 'c';
+			}
+		}
+		
+		if (direction == "down") {
+			if (area[(characterRow) + 1][characterCol] == 'o') {
+				area[characterRow][characterCol] = 'o';
+				area[(characterRow) + 1][characterCol] = 'c';
+			}
+		}
+		
+		if (direction == "left") {
+			if (area[characterRow][(characterCol) - 1] == 'o') {
+				area[characterRow][characterCol] = 'o';
+				area[characterRow][(characterCol) - 1] = 'c';
+			}
+		}
+		
+		if (direction == "right") {
+			if (area[characterRow][(characterCol) + 1] == 'o') {
+				area[characterRow][characterCol] = 'o';
+				area[characterRow][(characterCol) + 1] = 'c';
+			}
+		}
+				return area;
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 	// Main function
@@ -217,9 +274,15 @@ public class Maze {
 			}
 			System.out.println();
 		}
+		yeet.moveCharacter();
+		for (int i = 0; i < 20; i++) {
+			for (int u = 0; u < 20; u++) {
+				System.out.print(yeet.getMazeContent(i, u));
+			}
+			System.out.println();
 		
 	}
 	
 	
-	
+	}
 }
