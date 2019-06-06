@@ -1,12 +1,12 @@
 public class Enemy extends Person {
 	
-	private String[] items;
+	private String[] items; // instance variable to hold items enemy will give
 	
 	public Enemy(String name, String attack, String health) {
-		super(name, attack, health);
+		super(name, attack, health); // inherits creation method from superclass
 	}
 	
-	public void setItems() {
+	public void setItems() { // sets item array to hold certain items enemy will drop in combat
 		items[0] = "armor";
 		items[1] = "weapon";
 		items[2] = "nothing";
