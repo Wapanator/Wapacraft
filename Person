@@ -1,27 +1,28 @@
+
 public class Person {
 	
-	private String[] profile;
+	private String[] profile; // instance variables to store within profile
 	private String name;
 	private String attack;
 	private String health;
 	
 	public Person(String name, String attack, String health) {
-		profile[0] = name;
+		profile[0] = name; // creates a person and sets their stats within the profile
 		profile[1] = attack;
 		profile[2] = health;
 	}
 	
 	public void setHealth(String health) {
-		profile[2] = health;
+		profile[2] = health; // void method sets new health and stores in profile
 	}
 	
 	public String[] returnInfo() {
-		return profile;
+		return profile; // returns profile as a string array
 	}
 	
 	public void getInfo() {
 		System.out.println("Name: " + profile[0]);
 		System.out.println("Attack Stat: " + profile[1]);
 		System.out.println("Health: " + profile[2]);
-	}
+	} // outputs profile with labels and identifiers
 }
