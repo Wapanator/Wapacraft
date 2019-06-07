@@ -227,31 +227,38 @@ public class Maze {
 		Scanner input = new Scanner(System.in);
 		String direction = input.nextLine();
 		
-		if (direction == "up") {
+		if (direction.contentEquals("up")) {
 			if (area[(characterRow) - 1][characterCol] == 'o') {
 				area[characterRow][characterCol] = 'o';
 				area[(characterRow) - 1][characterCol] = 'c';
+				characterRow--;
+			}
+			if (area[(characterRow) - 1][characterCol] == 'e') {
+				
 			}
 		}
 		
-		if (direction == "down") {
+		if (direction.contentEquals("down")) {
 			if (area[(characterRow) + 1][characterCol] == 'o') {
 				area[characterRow][characterCol] = 'o';
 				area[(characterRow) + 1][characterCol] = 'c';
+				characterRow++;
 			}
 		}
 		
-		if (direction == "left") {
+		if (direction.contentEquals("left")) {
 			if (area[characterRow][(characterCol) - 1] == 'o') {
 				area[characterRow][characterCol] = 'o';
 				area[characterRow][(characterCol) - 1] = 'c';
+				characterCol--;
 			}
 		}
 		
-		if (direction == "right") {
+		if (direction.contentEquals("right")) {
 			if (area[characterRow][(characterCol) + 1] == 'o') {
 				area[characterRow][characterCol] = 'o';
 				area[characterRow][(characterCol) + 1] = 'c';
+				characterCol++;
 			}
 		}
 				return area;
@@ -274,13 +281,15 @@ public class Maze {
 			}
 			System.out.println();
 		}
+		
+		for (int x = 0; x < 15; x++) {
 		yeet.moveCharacter();
 		for (int i = 0; i < 20; i++) {
 			for (int u = 0; u < 20; u++) {
 				System.out.print(yeet.getMazeContent(i, u));
 			}
 			System.out.println();
-		
+		}
 	}
 	
 	
