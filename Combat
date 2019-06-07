@@ -12,54 +12,68 @@ public class Combat {
 		 String[] playerInformation = player.returnInfo();
 		 String[] enemyInformation = monster.returnInfo();
 		 // stores player and enemy info in a new string so they can be altered later
+		 
 		 int enemyHealth = Integer.parseInt(enemyInformation[2]);
 		 int enemyAttack = Integer.parseInt(enemyInformation[1]);
 		 // stores attack and health stats of player and enemy as integers to be changed in combat
+		 
 		 int playerAttack = Integer.parseInt(playerInformation[1]);
 		 int playerHealth = Integer.parseInt(playerInformation[2]);
 		 
 		 while (enemyHealth > 0 || playerHealth > 0) {
 		 // continues combat until enemy dies or player dies
+		 
 		 System.out.println("\nWhat would you like to do?");
 		 System.out.println("Attack\tRun");
 		 // gives player choice of running or fighting
+		 
 		 String input = text.next();
 		 
 		 if (input.contentEquals("Attack") || input.contentEquals("attack")) {
 			// if player decides to attack, enemy health is decreased
 				enemyHealth -= playerAttack;
 				String newEnemyHealth = Integer.toString(enemyHealth);
+				
 			// decreases enemy health by player attack stat
 				monster.setHealth(newEnemyHealth);
+				
 			// sets decreased health as new health for monster
 				System.out.println("\nYou have chosen to attack!");
 				System.out.println("Enemy health decreases by " + playerAttack + "\nNew Stats:\n");
+				
 			// outputs new player info and monster stat info
 				player.getInfo();
 				System.out.println();
 				monster.getInfo();
 			
 				System.out.println("\nThe enemy now attacks!");
+				
 			// once the player has attacked, the enemy has a chance to attack
 				int enemyAttackProb = (int) (Math.random() * 10);
+				
 			// 70% chance enemy attack will succeed
 				if (enemyAttackProb < 7) {
 					System.out.println("\nPlayer health decreases by " + enemyAttack);
+					
 				// if attack succeeds, player health decreases by enemy attack stat
 					playerHealth -= enemyAttack;
 					String newPlayerHealth = Integer.toString(playerHealth);
+					
 				// stores new health in player information
 					player.setHealth(newPlayerHealth);
+					
 				// outputs new stats for both player and enemy
 					System.out.println("\nNew Stats:\n");
 					player.getInfo();
 					System.out.println();
 					monster.getInfo();
 				}
+				
 				// if enemy does not succeed in attacking, prints out enemy missed
 				else {
 					System.out.println("\nThe enemy missed!");
 				}
+				
 				// checks to see if either the player or monster have died
 				if (playerHealth <= 0) {
 					System.out.println("You have died!");
@@ -72,10 +86,13 @@ public class Combat {
 			}
 		
 			else if (input.contentEquals("Run") || input.contentEquals("run")) {
+			
 			// if user opts to run checks to see player class
 				if (playerInformation[0].contentEquals("Mage")){
+				
 					int runProb = (int) (Math.random() * 10);
 					// mage has a higher probability of run success at 50%
+					
 					if ( runProb < 5) {
 					System.out.println("You have successfully escaped!");
 					enemyHealth = 0; // sets condition to escape while loop
@@ -84,6 +101,7 @@ public class Combat {
 				
 				else { // all other classes have run success probability of 20%
 					int runProb = (int) (Math.random() * 10);
+					
 					if (runProb < 2) {
 					System.out.println("You have successfully escaped!");
 					enemyHealth = 0; // sets condition to escape while loop
