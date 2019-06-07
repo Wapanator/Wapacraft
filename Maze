@@ -290,6 +290,34 @@ public class Maze {
 			}
 			System.out.println();
 		}
+		
+		/*
+		 * ATTEMPT TO CHANGE CHAR COLOR
+		 * 
+		Color red = new Color(255, 0, 0);
+		Color blue = new Color(0, 255, 0);
+		Color green = new Color(0, 0, 255);
+		Color white = new Color(0, 0, 0);
+		
+		
+		for (int i = 0; i < 20; i++) {
+			for (int u = 0; u < 20; u++) {
+				String s = String.valueOf(yeet.getMazeContent(i, u));
+				Graphics g = s.getGraphics();
+				
+				if( s == "w") {
+					area[i][u].setColor(Color.black);
+				}
+				if( s == "o") {
+					area[i][u].setColor(Color.white);
+				}
+				if( s == "e") {
+					area[i][u].setColor(Color.red);
+				}
+				if( s == "t") {
+					area[i][u].setColor(Color.yellow);
+				}
+		*/
 	}
 	
 	
