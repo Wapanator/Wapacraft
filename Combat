@@ -10,13 +10,13 @@ public class Combat {
 		Scanner text = new Scanner(System.in); // stores scanner input
 		 
 		 String[] playerInformation = player.returnInfo();
-		 String[] enemyInformation = enemy.returnInfo();
+		 String[] enemyInformation = monster.returnInfo();
 		 // stores player and enemy info in a new string so they can be altered later
 		 int enemyHealth = Integer.parseInt(enemyInformation[2]);
 		 int enemyAttack = Integer.parseInt(enemyInformation[1]);
 		 // stores attack and health stats of player and enemy as integers to be changed in combat
 		 int playerAttack = Integer.parseInt(playerInformation[1]);
-		 int playerHealth = Integer.praseInt(playerInformation[2]);
+		 int playerHealth = Integer.parseInt(playerInformation[2]);
 		 
 		 while (enemyHealth > 0 || playerHealth > 0) {
 		 // continues combat until enemy dies or player dies
@@ -73,7 +73,7 @@ public class Combat {
 		
 			else if (input.contentEquals("Run") || input.contentEquals("run")) {
 			// if user opts to run checks to see player class
-				if (playerInformation[0].contentEquals("Mage"){
+				if (playerInformation[0].contentEquals("Mage")){
 					int runProb = (int) (Math.random() * 10);
 					// mage has a higher probability of run success at 50%
 					if ( runProb < 5) {
