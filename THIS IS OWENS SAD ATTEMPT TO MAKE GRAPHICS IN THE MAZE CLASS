@@ -213,6 +213,10 @@ public class Maze {
 	public static void main(String[] args) {
 		Maze yeet = new Maze();
 		yeet.generate();
+		
+		//new 2D array to which will copy yeet but use more user-friendly characters
+		char[][] newMaze = new char[20][20];
+		
 		for (int i = 0; i < 20; i++) {
 			for (int u = 0; u < 20; u++) {
 				System.out.print(yeet.getMazeContent(i, u));
@@ -220,6 +224,33 @@ public class Maze {
 			System.out.println();
 		}
 		
+		System.out.println();
+        
+        	for (int i = 0; i < 20; i++) {
+            		for (int u = 0; u < 20; u++) {
+                		if (yeet.getMazeContent(i, u) == 'w')
+                		{
+                    			newMaze[i][u] = '•';
+                		}
+                		if (yeet.getMazeContent(i, u) == 'o')
+                		{
+                    			newMaze[i][u] = ' ';
+                		}
+                		if (yeet.getMazeContent(i, u) == 'e')
+                		{
+                		        newMaze[i][u] = '¤';
+                		}
+                		if (yeet.getMazeContent(i, u) == 't')
+                		{
+                    			newMaze[i][u] = '†';
+                		}
+                		if (yeet.getMazeContent(i, u) == 'c')
+                		{
+                    			newMaze[i][u] = '©';
+                		}
+            		}
+            		System.out.println();
+        	}
 		//owen's garbage that gonna try and change colors
 		for (int i = 0; i < 20; i++) {
 			for (int u = 0; u < 20; u++) {
