@@ -1,0 +1,60 @@
+import java.awt.*;//imports awt
+import java.applet.*;//imports applet
+import java.util.Scanner;//import Scanner
+
+//"maze" is the grid 
+public class moving extends Applet implements Moving {
+	private String characterguy;//
+	private int x, y, flag;
+	Thread c;//creates thread variable for the characterguy
+	
+	public void init(){//applet method for initialization
+		characterguy = "E"; //this is the characterguy that will go through the maze
+		x = 20;
+		y = 20;//dimensions for andrew's grid
+		flag = 1; //variable defined that can change if another condition is true
+		
+		c = new Thread(this, "MyThread");//creates the thread
+		c.start();//starts the thread
+	}
+	
+public void keyTyped( KeyEvent e ) {//method for movement
+      char c = e.getKeyChar();
+      if(c == 'w') {//if statement for up movement
+    	  y -= 10;//sets the new y as y-10 for upward
+      }else if(c == 's') {//if statement for down movement
+    	  y += 10;
+      }else if(c == 'a') {//if statement for left movement
+    	  x -= 10;
+      }else if(c == 'd') {//if statement for right movement
+    	  x += 10;
+      }
+      
+      if(x < 0) {
+    	  x = 0;//sets the origin
+      }else if(x > width) {
+    	  x = width;
+      }
+      
+      if(y < 0) {
+    	  y = 0;//sets the origin
+      }else if(y > height) {
+    	  y = height;
+      }
+      repaint();//draw character using x and y cords
+      e.consume();//consumes it so it will not keep happening over and over
+   }
+
+	}
+	
+	public void run() {
+		repaint();//calls the paint function to repaint the screen
+		updateplace();//calls the updateplace method
+		try {
+			Thread.sleep(500);//uses the "sleep" to make a pause of half a second 
+		}//                   so you can notice the movement, but its not too slow
+		catch (InterruptedException ie) {
+			System.out.println(ie);
+		}
+	}
+} 
